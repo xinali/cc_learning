@@ -1,0 +1,24 @@
+declare_args() {
+  googletest_dir = "//third_party/googletest"
+}
+
+config("googletest-setup") {
+    lib_dirs = [ "$googletest_dir/build/lib/" ]
+}
+
+config("googletest") {
+  if (googletest_dir != "") { 
+    print("googletest_dir: $googletest_dir")
+  }
+  configs = [ ":googletest-setup" ]
+  libs = [ "gtest" ]
+  include_dirs = [ 
+    "$googletest_dir/googletest/include",
+    "$googletest_dir/googlemock/include",
+  ]
+}
+
+config("googletest-main") {
+    configs = [ ":googletest-setup" ]
+    libs = [ "gtest_main" ]
+}

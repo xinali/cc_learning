@@ -1,0 +1,5 @@
+group("cc_learning") {
+  deps = [
+    "//src:cc_learning_test",
+  ]
+}
