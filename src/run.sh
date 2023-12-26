@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# regn
+../tools/linux_arm64/gn gen out
+gn_result=$?
+if [ $gn_result -ne 0 ]; then
+    echo "gn build failed with error $gn_result"
+    exit 1
+fi
+
 # reninja
 ../tools/linux_arm64/ninja -C out
 ninja_result=$?
