@@ -27,12 +27,15 @@ cmake . -B build
 cd build && make
 
 # 编译本项目
-cd /path/to/cc_learning
-third_party/tools/mac/gn gen out
-third_party/tools/mac/ninja -C out
+cd /path/to/cc_learning/src
+../tools/mac/gn gen out
+../tools/mac/ninja -C out
 
 # 测试
 out/cc_learning_test --gtest_filter=CCLearningTest.TestCRPTCountInstance
+
+# 或者直接使用运行脚本
+./run.sh TestFactoryPattern
 ```
 
 ## 添加测试用例
