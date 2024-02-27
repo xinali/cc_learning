@@ -14,16 +14,14 @@
 #include "../cc_learning_test.h"
 
 // 观察者基类
-class IObserver
-{
+class IObserver {
 public:
     virtual ~IObserver(){};
     virtual void Update(const std::string &message_from_subject) = 0;
 };
 
 // 主题基类 (被观察者)
-class ISubject
-{
+class ISubject {
 public:
     virtual ~ISubject(){};
     // 附加
@@ -34,12 +32,9 @@ public:
     virtual void Notify() = 0;
 };
 
-
-class Subject : public ISubject
-{
+class Subject : public ISubject {
 public:
-    virtual ~Subject()
-    {
+    virtual ~Subject() {
         std::cout << "Goodbye, I was the Subject.\n";
     }
 
@@ -70,8 +65,7 @@ public:
         std::cout << "There are " << list_observer_.size() << " observers in the list.\n";
     }
 
-    void SomeBusinessLogic()
-    {
+    void SomeBusinessLogic() {
         this->message_ = "change message message";
         Notify();
         std::cout << "I'm about to do some thing important\n";
@@ -84,10 +78,10 @@ private:
     std::string message_;
 };
 
-class Observer : public IObserver
-{
+class Observer : public IObserver {
 public:
-    Observer(Subject &subject) : subject_(subject) {
+    Observer(Subject &subject) :
+        subject_(subject) {
         this->subject_.Attach(this);
         std::cout << "Hi, I'm the Observer \"" << ++Observer::static_number_ << "\".\n";
         this->number_ = Observer::static_number_;
@@ -108,8 +102,8 @@ public:
     }
 
     void PrintInfo() {
-        std::cout << "Observer \"" << this->number_ 
-                  << "\": a new message is available --> " 
+        std::cout << "Observer \"" << this->number_
+                  << "\": a new message is available --> "
                   << this->message_from_subject_ << "\n";
     }
 
@@ -130,9 +124,8 @@ private:
 // 观察者初始编号
 int Observer::static_number_ = 0;
 
-// --gtest_filter=CCLearningTest.TestObserverPattern
-TEST(CCLearningTest, TestObserverPattern)
-{
+// ./run.sh TestObserverPattern
+TEST(CCLearningTest, TestObserverPattern) {
     // 一个被观察者即可
     Subject *subject = new Subject;
 

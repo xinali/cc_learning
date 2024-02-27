@@ -9,29 +9,26 @@
 */
 #include "../cc_learning_test.h"
 
-
 class Animal {
 public:
     // virtual void speak() { std::cout << "all animal speak!\n"; };
     virtual void speak() = 0;
     // 需要定义虚的析构函数，否则unique_ptr析构时无法找到
     // warnning: delete called on 'Animal' that is abstract but has non-virtual destructor
-    virtual ~Animal() {};
+    virtual ~Animal(){};
 };
-
 
 class Cat : public Animal {
 public:
     void speak() override { std::cout << "meow\n"; };
-    ~Cat() {};
+    ~Cat(){};
 };
 
 class Dog : public Animal {
 public:
     void speak() override { std::cout << "wang\n"; }
-    ~Dog() {};
+    ~Dog(){};
 };
-
 
 class AnimalFactory {
 public:
@@ -48,20 +45,19 @@ public:
     // }
 
     // 设置创建对象的接口
-    static Animal* createAnimal(const std::string &type) {
+    static Animal *createAnimal(const std::string &type) {
         if (type == "dog") {
             return new Dog();
         }
         if (type == "cat") {
             return new Cat();
-        }
-        else {
+        } else {
             return nullptr;
         }
     }
 };
 
-
+// ./run.sh TestFactoryPattern
 TEST(CCLearningTest, TestFactoryPattern) {
     // AnimalFactory *factory = new AnimalFactory();
     // factory->createAnimal("Dog");
