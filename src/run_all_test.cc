@@ -8,6 +8,7 @@
 #include "move_test.cc"
 #include "forward_test.cc"
 #include "test_const/test_const.cc"
+#include "function_test.cc"
 
 // design pattern
 // #include "DesignPatterns/observer_pattern_test.cc"
