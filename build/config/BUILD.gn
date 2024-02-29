@@ -114,12 +114,19 @@ config("compiler") {
   asmflags = []
   cflags = []
   cflags_c = []
-  cflags_cc = []
   cflags_objc = []
   cflags_objcc = []
-  ldflags = []
   defines = []
   configs = []
+  
+  // default use ASAN
+  if (is_clang || is_gcc) {
+    cflags_cc = [
+      "-fsanitize=address",
+      "-fno-omit-frame-pointer",
+    ]
+    ldflags = [ "-fsanitize=address" ]
+  }
 
   # System-specific flags. If your compiler flags apply to one of the
   # categories here, add it to the associated file to keep this shared config
@@ -357,6 +364,16 @@ config("extra_flags") {
   }
   if (extra_ldflags != "") {
     ldflags = extra_ldflags
+  }
+}
+
+config("asan_config") {
+  if (is_clang || is_gcc) {
+    cflags = [
+      "-fsanitize=address",
+      "-fno-omit-frame-pointer",
+    ]
+    ldflags = [ "-fsanitize=address" ]
   }
 }
 
