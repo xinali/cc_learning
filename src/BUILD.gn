@@ -1,13 +1,3 @@
-# if (is_clang) {
-#    print ("-------> compiler is clang")
-# }
-# else {
-#    print ("------> compile is not clang")
-#    print (cxx)
-# }
-
-# sources = [ "run_all_test.cc" ]
-
 executable("cc_learning_test") {
     sources = ["run_all_test.cc"]
     configs += [
