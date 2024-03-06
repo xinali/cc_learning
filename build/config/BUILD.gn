@@ -119,7 +119,7 @@ config("compiler") {
   defines = []
   configs = []
   
-  // default use ASAN
+  # default use ASAN
   if (is_clang || is_gcc) {
     cflags_cc = [
       "-fsanitize=address",
