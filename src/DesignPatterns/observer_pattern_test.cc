@@ -150,6 +150,8 @@ TEST(CCLearningTest, TestObserverPattern) {
     observer5->RemoveMeFromTheList();
 
     observer4->RemoveMeFromTheList();
+    delete subject;
+
     observer1->RemoveMeFromTheList();
 
     delete observer5;
@@ -157,5 +159,5 @@ TEST(CCLearningTest, TestObserverPattern) {
     delete observer3;
     delete observer2;
     delete observer1;
-    delete subject;
+    // delete subject;
 }
