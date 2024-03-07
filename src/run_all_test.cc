@@ -18,3 +18,4 @@
 #include "DesignPatterns/singleton_pattern_test.cc"
 #include "DesignPatterns/delegate_pattern_test.cc"
 #include "DesignPatterns/proxy_pattern_test.cc"
+#include "DesignPatterns/strategy_pattern_test.cc"
