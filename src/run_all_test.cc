@@ -12,10 +12,10 @@
 #include "uaf_unique_raw_ptr.cc"
 
 // design pattern
-// #include "DesignPatterns/observer_pattern_test.cc"
 #include "DesignPatterns/factory_pattern_test.cc"
 #include "DesignPatterns/observer_pattern_test.cc"
 #include "DesignPatterns/singleton_pattern_test.cc"
 #include "DesignPatterns/delegate_pattern_test.cc"
 #include "DesignPatterns/proxy_pattern_test.cc"
 #include "DesignPatterns/strategy_pattern_test.cc"
+#include "DesignPatterns/dependency_injection_pattern_test.cc"
