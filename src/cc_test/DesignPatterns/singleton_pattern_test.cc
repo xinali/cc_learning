@@ -81,7 +81,7 @@ void ThreadBar() {
     std::cout << singleton->value() << "\n";
 }
 
-TEST(CCLearningTest, TestSingletonPattern) {
+TEST(CCTest, TestSingletonPattern) {
     std::cout << "If you see the same value, then singleton was reused (yay!\n"
               << "If you see different values, then 2 singletons were created (booo!!)\n\n"
               << "RESULT:\n";

@@ -30,7 +30,7 @@ private:
     RealImage *real_image;
 };
 
-TEST(CCLearningTest, TestProxyPattern) {
+TEST(CCTest, TestProxyPattern) {
     // 使用代理类作相关控制
     Image *image = new ProxyImage();
     image->display();

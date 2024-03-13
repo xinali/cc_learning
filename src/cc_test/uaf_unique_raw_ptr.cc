@@ -35,7 +35,7 @@ void test_weak_raw(TestUnique *test_unique) {
 }
 
 // ./run.sh TestUniqueRawPtr
-TEST(CCLearningTest, TestUniqueRawPtr) {
+TEST(CCTest, TestUniqueRawPtr) {
     TestUnique *test_unique = new TestUnique();
     test_unique_raw(test_unique);
     test_unique->display();

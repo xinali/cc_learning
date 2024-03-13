@@ -37,7 +37,7 @@ fi
 test_pattern=$1
 
 # raw exec
-command="out/cc_learning_test --gtest_filter=CCLearningTest.TestFactoryPattern"
+command="out/cc_test --gtest_filter=CCTest.TestFactoryPattern"
 
 # replace with new command
 exec_command=$(echo $command | sed "s/TestFactoryPattern/$test_pattern/")

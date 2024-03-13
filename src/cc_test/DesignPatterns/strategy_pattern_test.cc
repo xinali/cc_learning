@@ -57,7 +57,7 @@ private:
 };
 
 // ./run.sh TestStrategy
-TEST(CCLearningTest, TestStrategy) {
+TEST(CCTest, TestStrategy) {
     PayContext pay_context;
     std::unique_ptr<CreditPayment> credit_pay = std::make_unique<CreditPayment>("credit_card", "11111111");
     std::unique_ptr<PaypalPayment> paypal_pay = std::make_unique<PaypalPayment>("test@g.com");

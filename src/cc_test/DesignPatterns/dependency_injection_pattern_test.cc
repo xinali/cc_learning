@@ -34,7 +34,7 @@ public:
 };
 
 // ./run.sh TestDependencyInjection
-TEST(CCLearningTest, TestDependencyInjection) {
+TEST(CCTest, TestDependencyInjection) {
     std::shared_ptr<ConsoleLogger> console_logger = std::make_shared<ConsoleLogger>();
     std::shared_ptr<FileLogger> file_logger = std::make_shared<FileLogger>();
 

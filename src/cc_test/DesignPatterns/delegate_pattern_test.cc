@@ -31,7 +31,7 @@ public:
 };
 
 // ./run.sh TestDelegatePattern
-TEST(CCLearningTest, TestDelegatePattern) {
+TEST(CCTest, TestDelegatePattern) {
     ConcreteTask task;
     // lambda 表达式捕获task引用
     // delegate 将具体的任务委托为task去执行

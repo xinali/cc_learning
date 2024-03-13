@@ -125,7 +125,7 @@ private:
 int Observer::static_number_ = 0;
 
 // ./run.sh TestObserverPattern
-TEST(CCLearningTest, TestObserverPattern) {
+TEST(CCTest, CCTestserverPattern) {
     // 一个被观察者即可
     Subject *subject = new Subject;
 

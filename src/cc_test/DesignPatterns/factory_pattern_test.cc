@@ -58,7 +58,7 @@ public:
 };
 
 // ./run.sh TestFactoryPattern
-TEST(CCLearningTest, TestFactoryPattern) {
+TEST(CCTest, TestFactoryPattern) {
     // AnimalFactory *factory = new AnimalFactory();
     // factory->createAnimal("Dog");
 

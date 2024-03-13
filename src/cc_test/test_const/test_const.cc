@@ -14,7 +14,7 @@
 //   const int a = 1;
 //   const int &ra = a;
 
-//   int b = 1; 
+//   int b = 1;
 //   int &rb = b;
 //   int c = 2;
 //   // 可以更改引用指向
@@ -56,7 +56,7 @@
 //   std::cout << "rc value: " << rc << std::endl;
 
 //   /*
-//   result: 
+//   result:
 //     c value: 1111
 //     d value: 1111
 //     rc value: 1111
@@ -65,7 +65,7 @@
 
 // // 测试const和指针
 // void test_pointer_const() {
-//   int a = 1; 
+//   int a = 1;
 //   const int *p = &a;
 //   // *p = 3; 错误，p为const指针，不能改变其值
 //   int b = 3;
@@ -104,12 +104,11 @@
 //   // *pc = 5; 错误，*pc为const int类型，不可以变
 // }
 
-
-TEST(CCLearningTest, TestConstexpr) {
-  int a = 1;
-  constexpr int b = 2;
-  // constexpr int c = a; 错误，a不是常量表达式
-  const int d = 4;
-  constexpr int e = d; // 正确，d为const常量
-  std::cout << "e value: " << e << std::endl;
+TEST(CCTest, TestConstexpr) {
+    int a = 1;
+    constexpr int b = 2;
+    // constexpr int c = a; 错误，a不是常量表达式
+    const int d = 4;
+    constexpr int e = d; // 正确，d为const常量
+    std::cout << "e value: " << e << std::endl;
 }

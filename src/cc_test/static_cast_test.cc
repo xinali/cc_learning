@@ -6,40 +6,42 @@
 
 struct B {
     int m;
-    const char* hello() const {
+    const char *hello() const {
         return "hello world, this is in B!\n";
     }
 };
 
-
-struct D: B {
-    const char* hello() const {
+struct D : B {
+    const char *hello() const {
         return "hello world, this is in D!\n";
     }
     int c;
 };
 
-enum class E { ONE = 1, TWO, THREE };
-enum EU { ONE = 1, TWO, THREE };
+enum class E { ONE = 1,
+               TWO,
+               THREE };
+enum EU { ONE = 1,
+          TWO,
+          THREE };
 
-
-TEST(CCLearningTest, StaticCastTest) {
+TEST(CCTest, StaticCastTest) {
     D d;
 
     // 隐含转换
-    B& br = d; 
-    std::cout << "1) " << br.hello(); 
+    B &br = d;
+    std::cout << "1) " << br.hello();
 
     // 这么转有风险，因为d可能存在b中没有的数据
-    D& another_d = static_cast<D&>(br);
+    D &another_d = static_cast<D &>(br);
     std::cout << "1) " << another_d.hello();
 
     // 数据未定义
     std::cout << "child data: " << another_d.c << "\n";
 
-    std::vector<int> v0{1, 2, 3}; 
+    std::vector<int> v0{1, 2, 3};
     // 左值转化为右值 -> 延伸万能引用， 左值会reset，这里应该相当于move
-    std::vector<int> v2 = static_cast<std::vector<int>&&>(v0);
+    std::vector<int> v2 = static_cast<std::vector<int> &&>(v0);
     std::cout << "2) after move, v0.size() = " << v0.size() << "\n";
     std::cout << "2) after get, v2.size() = " << v2.size() << "\n";
 
@@ -49,12 +51,12 @@ TEST(CCLearningTest, StaticCastTest) {
     std::cout << "3) v.size() = " << v.size() << "\n";
 
     void *nv = &n;
-    int* ni = static_cast<int*>(nv);
+    int *ni = static_cast<int *>(nv);
     std::cout << "4) *ni = " << *ni << "\n";
 
     D a[10];
     // 数组指针转移
-    B* dp = static_cast<B*>(a);
+    B *dp = static_cast<B *>(a);
     std::cout << dp[0].hello(); // in B!
 
     // 枚举类转化为整数
@@ -76,9 +78,9 @@ TEST(CCLearningTest, StaticCastTest) {
     // 这种转化目前没有接触过，不太理解
     std::cout << br.*static_cast<int B::*>(pm) << '\n';
 
-    void* voidp = &e;
+    void *voidp = &e;
     // 没理解转化的意义
-    std::vector<int>* p = static_cast<std::vector<int>*>(voidp);
+    std::vector<int> *p = static_cast<std::vector<int> *>(voidp);
     // 输出的是指针地址
     std::cout << p << "\n";
 }

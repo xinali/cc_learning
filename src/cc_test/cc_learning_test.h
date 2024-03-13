@@ -8,8 +8,7 @@
 #include <iostream>
 #include <gtest/gtest.h>
 
-class CCLearningTest: public testing::Test {
-
+class CCTest : public testing::Test {
 };
 
 #endif // _CC_LEARNING_TEST_H

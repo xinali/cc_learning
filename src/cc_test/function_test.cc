@@ -13,7 +13,7 @@ struct Add {
     }
 };
 
-TEST(CCLearningTest, TestFunction) {
+TEST(CCTest, TestFunction) {
     // 存储普通函数
     std::function<void(int)> func1 = display;
     func1(1);

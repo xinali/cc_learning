@@ -1,8 +1,12 @@
 # cc_learning
 
-日常学习`C/C++`过程中，代码测试记录
+日常学习`C/C++`过程中，代码测试记录，目前项目分为两个部分`cc_test/cc_chromium`，
+其中`cc_test`主要是记录一些`C/C++`代码实验测试，`cc_chromium`主要是记录在chromium源码中进行的测试样例。
+`cc_chromium`测试需要借助chromium源码才能成功进行。
 
-## 测试环境
+## cc_test
+
+### 测试环境
 
 ```
 # linux/mac
@@ -12,7 +16,7 @@ gn + ninja + clang
 `build`配置文件来自于[gn-build](https://github.com/timniederhausen/gn-build)，
 其中拿掉了对`ios`和`andriod`的支持，并根据自己的需求做了部分定制化的更改
 
-## 编译测试
+### 编译测试
 
 `mac`环境
 
@@ -20,17 +24,17 @@ gn + ninja + clang
 git clone --recurse-submodules https://github.com/xinali/cc_learning
 
 # 编译googletest
-cd /path/to/cc_learning/third_party/googletests
+cd /path/to/cc_learning/src/third_party/googletests
 cmake . -B build
 cd build && make
 
 # 编译本项目
-cd /path/to/cc_learning/src
+cd /path/to/cc_learning/src/cc_test
 ../tools/mac/gn gen out
 ../tools/mac/ninja -C out
 
 # 测试
-out/cc_learning_test --gtest_filter=CCLearningTest.TestCRPTCountInstance
+out/cc_test --gtest_filter=CCTest.TestCRPTCountInstance
 
 # 或者直接使用运行脚本
 ./run.sh TestFactoryPattern
@@ -42,17 +46,17 @@ out/cc_learning_test --gtest_filter=CCLearningTest.TestCRPTCountInstance
 chmod +x ../tools/mac/gn
 ```
 
-## 添加测试用例
+### 添加测试用例
 
 添加测试用例分为三步
 
 1. 引入头文件 `#include "cc_learning_test.h"`
-2. 编写测试用例，在`TEST`函数中集成`CCLearningTest`
+2. 编写测试用例，在`TEST`函数中集成`CCTest`
 3. 在测试文件`run_all_test.cc`中添加`#include "xxx_test.cc"`
 
 添加完测试用例，直接编译指令即可
 
-## 已学习
+### 已学习
 
 - [x] std::forword
 - [x] std::shared_ptr
@@ -66,7 +70,7 @@ chmod +x ../tools/mac/gn
 - [x] const_cast
 
 
-## 计划学习
+### 计划学习
 
 - [ ] c++ CRPT (v8 fast properties example)
 - [ ] c++ nested class design (v8 ElementsAccessor -> InternalElementsAccessor)
@@ -224,3 +228,29 @@ chmod +x ../tools/mac/gn
        接口注入
        接口注入涉及到定义一个专门的接口，该接口允许将依赖传递给组件。组件实现该接口，并通过实现的方法接收依赖项。
        这种方法较少使用，但在某些特定情况下可以提供额外的灵活性。
+
+
+## cc_chromium
+
+使用方法
+1. 将`cc_chromium`源码复制到`chromium/src`目录下
+2. 在`chromium/src/BUILD.gn`最后添加如下内容
+
+   ```gn
+   group("cc_chromium") {
+     testonly = true
+     deps = ["cc_chromium"]
+   }
+   ```
+3. 编译`ninja -C out/release cc_chromium`
+4. 执行`out/release/cc_chromium --gtest_filter=CCChromiumTest.xxx`
+
+目前已测试的`chromium`相关内容
+
+- [x] 日志记录
+- [x] 栈回溯
+
+
+## 参考
+
+[chromium demo](https://github.com/keyou/chromium_demo)
