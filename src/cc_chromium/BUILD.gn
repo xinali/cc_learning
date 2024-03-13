@@ -1,3 +1,10 @@
+group("cc_chromium") {
+    testonly = true
+    deps = [
+        "mojo_test:mojo_test_single_process"
+    ]
+}
+
 executable("cc_chromium") {
   testonly = true
   sources = [ 

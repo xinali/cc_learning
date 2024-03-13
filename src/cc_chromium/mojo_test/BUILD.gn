@@ -1,0 +1,12 @@
+executable("mojo_test_single_process") {
+  testonly = true
+  sources = [
+    "mojo_test_single_process.cc",
+  ]
+
+  deps = [
+    "//base",
+    "//mojo/public",
+    "//mojo/core/embedder",
+  ]
+}
