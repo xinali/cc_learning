@@ -1,0 +1,5 @@
+module cc_chromium.mojo_test.mojom;
+
+interface ExampleInterface {
+    DoSomeThing(string who);
+};

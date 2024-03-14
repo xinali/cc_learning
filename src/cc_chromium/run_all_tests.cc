@@ -1,1 +1,6 @@
 #include "logging_test.cc"
+#include "mojo_test/mojo_test_simple.cc"
+// #include "mojo_test/mojo_test_simple_server.cc"
+#include "mojo_test/mojo_test_single_process.cc"
+#include "mojo_test/mojo_test_multiple_process.cc"
+#include "mojo_test/mojo_test_multiple_process_bindings.cc"

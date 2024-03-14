@@ -1,0 +1,23 @@
+
+// Ｃhromium 推荐将mojom文件放在单独的mojom目录下
+
+module cc_chromium.mojo_test.mojom;
+
+interface Api {
+    PrintApi(string data);
+};
+
+interface Api2 {
+    PrintApi2(string data);
+};
+
+// see https://docs.google.com/document/d/1Jwfbzbe8ozaoilhqj5mAPYbYGpgZCen_XAAAdwmyP1E/edit#heading=h.serv9pzfw6sd
+interface Test3 {
+    GetApi(pending_receiver<Api> api);
+    SetApi2(pending_remote<Api2> api2);
+};
+
+interface Test32 {
+    GetApi(pending_associated_receiver<Api> api);
+    SetApi2(pending_associated_remote<Api2> api2);
+};

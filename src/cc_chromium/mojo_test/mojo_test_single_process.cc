@@ -1,4 +1,3 @@
-// #include "base/command_line.h"
 #include "base/logging.h"
 #include "base/run_loop.h"
 #include "base/task/single_thread_task_executor.h"
@@ -11,15 +10,15 @@
 #include "mojo/public/cpp/system/data_pipe.h"
 #include "mojo/public/cpp/system/message_pipe.h"
 
-// int main(int argc, char **argv) {
+#include "../cc_chromium_test.h"
+
 TEST(CCChromiumTest, TestMojoSingleProcess) {
-    // // 初始化CommandLine，DataPipe 依赖它
-    // base::CommandLine::Init(argc, argv);
+    
     mojo::core::Init();
     base::Thread ipc_thread("ipc!");
     ipc_thread.StartWithOptions(
         base::Thread::Options(base::MessagePumpType::IO, 0));
-
+ 
 #if defined(OS_WIN)
     logging::LoggingSettings logging_setting;
     logging_setting.logging_dest = logging::LOG_TO_STDERR;
@@ -34,45 +33,7 @@ TEST(CCChromiumTest, TestMojoSingleProcess) {
         ipc_thread.task_runner(),
         mojo::core::ScopedIPCSupport::ShutdownPolicy::CLEAN);
 
-    // 使用 C 接口创建一条MessagePipe
-    // MessagePipe
-    // 只是一对数字，只用于ID标识，并不对应任何系统资源，并且该行为在单进程和多进程中都是一致的
-    // 因此可以非常快速，不可能失败的，创建大量的MessagePipe。
-    MojoHandle sender_handle, receiver_handle;
-    MojoResult result =
-        MojoCreateMessagePipe(NULL, &sender_handle, &receiver_handle);
-    DCHECK_EQ(result, MOJO_RESULT_OK);
-    // 使用 C 接口发送一条消息
-    {
-        MojoMessageHandle message;
-        result = MojoCreateMessage(nullptr, &message);
-        DCHECK_EQ(result, MOJO_RESULT_OK);
-        MojoAppendMessageDataOptions options;
-        options.struct_size = sizeof(options);
-        options.flags = MOJO_APPEND_MESSAGE_DATA_FLAG_COMMIT_SIZE;
-        void *buffer;
-        uint32_t buffer_size;
-        result = MojoAppendMessageData(message, 6, nullptr, 0, &options, &buffer,
-                                       &buffer_size);
-        DCHECK_EQ(result, MOJO_RESULT_OK);
-        memcpy(buffer, "hello", 6);
-        LOG(INFO) << "send: " << (const char *)buffer;
-
-        result = MojoWriteMessage(sender_handle, message, nullptr);
-        DCHECK_EQ(result, MOJO_RESULT_OK);
-    }
-    // 使用 C 接口接收一条消息
-    {
-        MojoMessageHandle message;
-        result = MojoReadMessage(receiver_handle, nullptr, &message);
-        DCHECK_EQ(result, MOJO_RESULT_OK);
-
-        void *buffer = NULL;
-        uint32_t num_bytes;
-        result = MojoGetMessageData(message, nullptr, &buffer, &num_bytes, nullptr,
-                                    nullptr);
-        LOG(INFO) << "receive: " << (const char *)buffer;
-    }
+    MojoResult result = MOJO_RESULT_OK;
 
     // 使用C++接口创建一条 MessagePipe
     mojo::MessagePipe pipe;

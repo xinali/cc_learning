@@ -1,19 +1,32 @@
-group("cc_chromium") {
-    testonly = true
-    deps = [
-        "mojo_test:mojo_test_single_process"
-    ]
-}
+# import("//build/buildflag_header.gni")
+#import("//cc_chromium/cc_chromium_buildflags.gni")
+
+
+#flags = []
+# buildflag_header("buildflags") {
+#   header = "buildflags/buildflags.h"
+#   if (enable_mojo_test) {
+#     print ("enable mojo test 1")
+#     flags += [ "ENABLE_MOJO_TEST=true" ]
+#   } 
+#   else {
+#     flags += [ "ENABLE_MOJO_TEST=false" ]
+#   }
+# }
 
 executable("cc_chromium") {
+  sources = [ "run_all_tests.cc" ]
   testonly = true
-  sources = [ 
-    "run_all_tests.cc"
-  ]
   deps = [
-    "//base/test:run_all_unittests",
+    # run all unit tests
+    # "//base/test:run_all_unittests",
     "//base/test:test_support",
     "//testing/gmock",
-    "//testing/gtest",
-   ]
+    # one unit test once
+    "//testing/gtest:gtest_main",
+    "//base",
+    "//mojo/public",
+    "//mojo/core/embedder",
+    "//cc_chromium/mojo_test/mojom:mojom",
+  ] 
 }
