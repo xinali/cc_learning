@@ -19,3 +19,4 @@
 #include "DesignPatterns/proxy_pattern_test.cc"
 #include "DesignPatterns/strategy_pattern_test.cc"
 #include "DesignPatterns/dependency_injection_pattern_test.cc"
+#include "DesignPatterns/broker_pattern_test.cc"
